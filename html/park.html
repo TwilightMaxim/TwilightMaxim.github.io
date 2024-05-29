@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SityMove</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Навигация страницы -->
+    <header>
+        <div class="header">
+            <div class="logo">
+                <a href="../index.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
+            </div>
+            <div class="nav">
+                <div class="contact">
+                    <p class="info">+7-962-663-45-41</p>
+                    <p class="info">citymovesupport@gmail.ru</p>
+                </div>
+                <button class="profile_img"></button>
+            </div>
+        </div>
+    </header>
+    <section class="page">
+        <div class="namePage"><h1>Транспортный парк компании</h1></div>
+        <button class="add_car">Добавить транспорт</button>
+        <div class="park">
+            <div class="block_item_park">
+                
+            </div>
+            
+            
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+            <img class="footer_img" src="../img/image 14.png" alt="">
+            <img class="footer_img" src="../img/image 15.png" alt="">
+            <p class="footer_text">SityMove, 2024 ©</p>
+        </div>
+    </footer>
+
+    <script>
+        fetch('https://localhost:7150/Vehicles/VehicleList', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка сети');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const cardContainer = document.querySelector('.block_item_park');
+                cardContainer.innerHTML = '';
+
+                data.forEach(cars => {
+                const card = document.createElement('div');
+                card.dataset.id = cars.VehicleID;
+                card.classList.add('item_car');
+
+                // Создать содержимое карточки на основе данных предложения
+                const content = `
+                <div class="right_image">
+                        <img src="${cars.Photo}" alt="">
+                    </div>
+                    <div class="info_car">
+                        <p>${cars.Model}</p>
+                        <p>${cars.RegistrationNumber}</p>
+                        <div class="info_car_bottom">
+                            <p>Вместимость: ${cars.Capacity}</p>
+                            <div class="info_car_bottom_info">
+                                <img src="../img/image 16.png" alt="">
+                                <img class="delete-icon" src="../img/image 17.png" alt="" data-id="${cars.VehicleID}"> 
+                            </div>       
+                        </div>
+                            
+                    </div>
+                `;
+                card.innerHTML = content;
+
+                cardContainer.appendChild(card);
+
+                const deleteIcons = document.querySelectorAll('.delete-icon');
+                deleteIcons.forEach(icon => {
+                icon.addEventListener('click', function(event) {
+                    const id = event.target.dataset.id;
+                    console.log(id);
+                    deleteVehicle(id);
+                });
+            });
+            });
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+
+        function deleteVehicle(id) {
+            fetch(`https://localhost:7150/Vehicles/DeleteVehicle?id=${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка удаления');
+                }
+                location.reload();
+            })
+            .then(data => {
+                console.log('Транспортное средство удалено', data);
+                
+                // Удалить элемент из DOM
+                const cardToDelete = document.querySelector(`.item_car[data-id="${id}"]`);
+                if (cardToDelete) {
+                    cardToDelete.remove();
+                }
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        }
+    </script>
+</body>
+</html>
+
+<script>
+
+</script>
+

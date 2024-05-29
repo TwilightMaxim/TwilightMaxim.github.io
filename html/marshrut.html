@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SityMove</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Навигация страницы -->
+    <header>
+        <div class="header">
+            <div class="logo">
+                <a href="../index.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
+            </div>
+            <div class="nav">
+                <div class="contact">
+                    <p class="info">+7-962-663-45-41</p>
+                    <p class="info">citymovesupport@gmail.ru</p>
+                </div>
+                <button class="profile_img"></button>
+            </div>
+        </div>
+    </header>
+    <section class="page">
+        <div class="namePage"><h1>Предложения по выбраному маршруту</h1></div>
+        <div class="block_item_card">
+            
+        </div>
+    </section>
+    <footer>
+        <div class="footer">
+            <img class="footer_img" src="../img/image 14.png" alt="">
+            <img class="footer_img" src="../img/image 15.png" alt="">
+            <p class="footer_text">SityMove, 2024 ©</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            displayOffers();
+        });
+
+        function displayOffers() {
+            const data = JSON.parse(localStorage.getItem('offers'));
+            console.log(data);
+
+            const cardContainer = document.querySelector('.block_item_card');
+            cardContainer.innerHTML = '';
+
+            data.forEach(offer => {
+                const card = document.createElement('div');
+                card.classList.add('item_card');
+
+                // Создать содержимое карточки на основе данных предложения
+                const content = `
+                <div class="top_content">
+                    <h1>${offer.departureTime}</h1>
+                    <p>Время в пути</p>
+                    <h1>${offer.arrivalTime}</h1>
+                </div>
+                <div class="center_content">
+                    <div class="left_content">
+                        <h3>${offer.date}</h3>
+                        <p>${offer.placeDeparture}</p>
+                        <p>${offer.cityDeparture}</p>
+                    </div>
+                    <div class="right_content">
+                        <h3>${offer.date}</h3>
+                        <p>${offer.placeArrival}</p>
+                        <p>${offer.cityArrival}</p>
+                    </div>
+                </div>
+                <div class="bottom_content">
+                    <h1 class="cost">${offer.cost} р.</h1>
+                    <button class="buy" onclick="">Купить билет</button>
+                </div>
+                `;
+                card.innerHTML = content;
+
+                cardContainer.appendChild(card);
+            });
+        }
+    </script>
+
+</body>
+</html>
+

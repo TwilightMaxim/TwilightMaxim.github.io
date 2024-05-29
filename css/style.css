@@ -1,0 +1,391 @@
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    list-style-type: none;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+html{
+    scroll-behavior: smooth;
+}
+header{
+    width: 100%;
+    border-bottom: 1px solid #000;
+}
+.header{
+    margin: 0 390px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo_h1{
+    color: #000;
+    font-size: 32px;
+}
+.logo_span{
+    color: #ff0000;
+}
+.nav{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.info{
+    font-size: 16px;
+    font-weight: bold;
+}
+.profile_img{
+    background: url('../img/profile.png');
+    width: 35px;
+    height: 35px;
+    border: none;
+    cursor: pointer;
+}
+.main{
+    background: url('../img/back1.png');
+    background-size: cover;
+    height: 629px;
+    width: 100%;
+}
+.slogan{
+    padding-top: 240px;
+    color: #fff;
+    font-size: 26px;
+    text-align: center;
+}
+.table{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.input_table_link{
+    padding: 9px;
+    background: #ff0000;
+    color: #fff;
+    width: 150px;
+    cursor: pointer;
+    border-radius: 0 10px 10px 0px;
+}
+.input_table{
+    padding: 10px;
+    border: 1px solid #000;
+    text-align: center;
+}
+.date{
+    padding: 9px;
+}
+.one{
+    border-radius: 10px 0 0  10px;
+}
+.about{
+    width: 100%;
+}
+.card{
+    padding: 100px 0;
+    gap: 40px;
+    display: flex;
+    justify-content: center;
+}
+.card_item{
+    text-align: center;
+    width: 300px;
+}
+.card_text{
+    padding-top: 10px;
+    width: 300px;
+}
+.information{
+    background: url('../img/back2.png');
+    height: 500px;
+    width: 100%;
+    background-size: cover;
+}
+.information_card{
+    padding-top: 100px;
+    margin: 0 390px;
+    display: flex;
+    justify-content: space-between;
+}
+.card_info{
+    background: #fff;
+    width: 360px;
+    height: 350px;
+    text-align: center;
+    border-radius: 50px;
+}
+.card_info h4{
+    padding-top: 20px;
+}
+.text_card_info{
+    padding: 10px
+}
+.footer{
+    padding: 10px 0;
+    margin: 0 390px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 30px
+}
+.footer_text{
+    color: #777171;
+}
+.lk{
+    display: grid;
+    justify-content: center;
+}
+.lk_main{
+    width: 910px;
+    height: 180px;
+}
+.lk_info{
+    border: 1px solid #000;
+    border-radius: 15px;
+    display: flex;
+    padding-left: 30px;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+.name{
+    display: grid;
+    gap: 30px;
+}
+.lk_logo{
+    font-size: 34px;
+    margin: 30px 0;
+}
+.name h1{
+    font-size: 34px;
+}
+.name p{
+    font-weight: 700;
+}
+.settings{
+    display: flex;
+    justify-content:space-between;
+    margin-top: 20px;
+}
+.show{
+    justify-content: start;
+    gap: 40px;
+}
+.lk_link{
+    padding: 5px 40px;
+    font-weight: 700;
+    border: 1px solid #000;
+    color: #000;
+    border-radius: 10px;
+}
+.overlai{
+    position: absolute;
+    right: 390px;
+    width: 250px;
+    height: 100px;
+    background: #fff;
+    border-radius: 10px;
+    display: none;
+}
+.active{
+    display: block;
+}
+.overlai_nav{
+    display: grid;
+    gap: 10px;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.overlai_nav button, a{
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 700;
+    color: #000;
+}
+.line{
+    width: 100%;
+    height: 1px;
+    background-color: #000;
+    margin-top: 70px;
+}
+
+.registration{
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+   transform: translate(-50%, -50%);
+    position: fixed;
+    width: 400px;
+    height: 500px;
+    background: #fff;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 20px;
+    display:none;
+} 
+.activ{
+    display: block;
+}
+.box_name{
+    padding-top: 10px;
+}
+.box_name input{
+    padding: 5px;
+    width: 190px;
+    border-radius: 10px;
+}
+.box_name_btn{
+    padding: 5px;
+    border-radius: 10px;
+    background: #ff0000;
+    color: #fff;
+    margin-top: 10px;
+    font-size: 20px;
+}
+.name_reg{
+    font-size: 32px;
+    padding-top: 30px;
+}
+.login{
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+   transform: translate(-50%, -50%);
+    position: fixed;
+    width: 400px;
+    height: 300px;
+    background: #fff;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 20px;
+    display:none;
+}
+.acti{
+    display: block;
+}
+.page{
+    margin: 0 390px;
+    height: 100vh;
+}
+.namePage{
+    padding-top: 30px;
+}
+.block_item_card{
+    padding-top: 40px;
+    display: grid;
+    gap: 20px;
+}
+.item_card{
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+    transition: 1s;
+}
+.item_card:hover{
+    border: 1px dashed #000;
+}
+.item_card .top_content{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #000;
+}
+.top_content p{
+    font-weight: 900;
+}
+.center_content{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+.right_content{
+    text-align: right;
+}
+.bottom_content{
+    display: flex;
+    justify-content: end;
+    padding-top: 20px;
+    gap: 20px;
+}
+.bottom_content .buy{
+    background: #ff0000;
+    color: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+.add_car{
+    font-size: 20px;
+    padding: 0 30px;
+    background: transparent;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+.block_item_park{
+    margin-top: 30px;
+    display: grid;
+    gap: 40px;
+}
+.item_car{
+    display: flex;
+    width: 488px;
+    border: 1px solid #000;
+}
+.right_image{
+    padding: 10px 20px;
+    border-right: 1px solid #000;
+}
+.right_image img{
+    width: 134px;
+    height: 80px;
+}
+.info_car{
+    font-weight: 900;
+    padding: 10px;
+}
+.info_car_bottom{
+    width: 290px;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
+
+.info_car_bottom img{
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.park{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+table{
+    margin-top: 40px;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-bottom: 20px;
+}
+tr{
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #000;
+}
+td{
+    width: 100px;
+    text-align: left;
+	padding: 10px;
+}
+.img_td{
+    width: 20px;
+}
+td img{
+    width: 20px;
+}
