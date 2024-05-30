@@ -10,7 +10,7 @@
     <header>
         <div class="header">
             <div class="logo">
-                <a href="../index.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
+                <a href="../indexmain.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
             </div>
             <div class="nav">
                 <div class="contact">
@@ -66,7 +66,7 @@
                 const number = document.getElementById('RegistrationNumber').value;
                 const capacity = document.getElementById('Capacity').value;
 
-                fetch(`http://85.193.85.147:5000/Vehicles/VehicleAdd`, {
+                fetch(`https://85.193.85.147:5000/Vehicles/VehicleAdd`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

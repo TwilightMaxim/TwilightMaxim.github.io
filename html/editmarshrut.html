@@ -10,7 +10,7 @@
     <header>
         <div class="header">
             <div class="logo">
-                <a href="../index.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
+                <a href="../indexmain.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
             </div>
             <div class="nav">
                 <div class="contact">
@@ -98,7 +98,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             const routeId = getQueryParam('id');
             if (routeId) {
-                fetch(`http://85.193.85.147:5000/TransportRoutes/RoutesInfoID?Id=${routeId}`, {
+                fetch(`https://85.193.85.147:5000/TransportRoutes/RoutesInfoID?Id=${routeId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -136,7 +136,7 @@
                 const numbers = document.getElementById('numberSeats').value;
                 const vid = document.getElementById('vehicleId').value;
 
-                fetch(`http://85.193.85.147:5000/TransportRoutes/EditRoutes?Id=${routeId}`, {
+                fetch(`https://85.193.85.147:5000/TransportRoutes/EditRoutes?Id=${routeId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'

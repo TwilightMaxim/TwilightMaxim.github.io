@@ -11,7 +11,7 @@
     <header>
         <div class="header">
             <div class="logo">
-                <a href="../index.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
+                <a href="../indexmain.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
             </div>
             <div class="nav">
                 <div class="contact">
@@ -50,7 +50,7 @@
     </footer>
 
     <script>
-        fetch('http://85.193.85.147:5000/TransportRoutes/RoutesList', {
+        fetch('https://85.193.85.147:5000/TransportRoutes/RoutesList', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -109,7 +109,7 @@
             });
 
             function deleteRoute(id) {
-            fetch(`http://85.193.85.147:5000/TransportRoutes/DeleteRoutes?Id=${id}`, {
+            fetch(`https://85.193.85.147:5000/TransportRoutes/DeleteRoutes?Id=${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

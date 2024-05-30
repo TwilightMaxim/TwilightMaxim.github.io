@@ -20,7 +20,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         passwordSalt: "string"
     };
     // Отправляем данные на сервер
-    fetch('http://85.193.85.147:5000/Authentication/Authorization', {
+    fetch('https://85.193.85.147:5000/Authentication/Authorization', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -57,7 +57,7 @@ document.getElementById('regForm').addEventListener('submit', function(event) {
         passwordSalt: "string"
     };
     // Отправляем данные на сервер
-    fetch('http://85.193.85.147:5000/Authentication/Registration', {
+    fetch('https://85.193.85.147:5000/Authentication/Registration', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -89,7 +89,7 @@ document.getElementById('SearchForm').addEventListener('submit', function(event)
     console.log(arrivalCity);
     console.log(date);
 
-    fetch(`http://85.193.85.147:5000/TransportRoutes/RoutesList?departureCity=${departureCity}&arrivalCity=${arrivalCity}&date=${date}`)
+    fetch(`https://85.193.85.147:5000/TransportRoutes/RoutesList?departureCity=${departureCity}&arrivalCity=${arrivalCity}&date=${date}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Ошибка HTTP: ' + response.status);

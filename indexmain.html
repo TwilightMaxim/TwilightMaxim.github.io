@@ -11,7 +11,7 @@
     <header>
         <div class="header">
             <div class="logo">
-                <a href="indexmain.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
+                <a href="../index.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
             </div>
             <div class="nav">
                 <div class="contact">
@@ -23,53 +23,10 @@
         </div>
         <div class="overlai">
             <div class="overlai_nav">
-                <button onclick="openLog()">Вход</button>
-                <button onclick="openReg()">Регистрация</button>
+                <a href="html/LK.html">Личный кабинет</a>
+                <a href="indexmain.html">Выход</a>
             </div>
-        </div>
-        <div class="registration">
-            <div class="registrationblock ">
-                <form id="regForm">
-                     <div class="name_reg">Регистрация</div>
-                <div class="box_name">
-                    <p>Введите почту</p>
-                    <input type="email" id="regEmail">
-                </div>
-                <div class="box_name">
-                    <p>Имя</p>
-                    <input type="text" id="regName">
-                </div>
-                <div class="box_name">
-                    <p>Фамилия</p>
-                    <input type="text" id="regFam">
-                </div>
-                <div class="box_name">
-                    <p>Дата рождения</p>
-                    <input type="text" id="regDate">
-                </div>
-                <div class="box_name">
-                    <p>Пароль</p>
-                    <input type="password" id="regPassword">
-                </div>
-                <button type="submit" class="box_name_btn">Зарегистрироваться</button>
-                </form>
-            </div>
-        </div>
-        <div class="login">
-            <div class="loginnblock ">
-                <form id="loginForm">
-                     <div class="name_reg">Вход</div>
-                <div class="box_name">
-                    <p>Введите почту</p>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="box_name">
-                    <p>Пароль</p>
-                    <input type="password" id="password" required>
-                </div>
-                <button type="submit" class="box_name_btn">Войти</button>
-                </form>
-            </div>
+           
         </div>
     </header>
     <!-- Главная страница -->
@@ -80,13 +37,13 @@
                 <h1 class="slogan_h1">Путешествия по вашему</h1>
                 <h1 class="slogan_h1">выбору по самым доступным ценам</h1>
             </div>
-            <form action="" id="SearchForm">
+            <form action="">
                 <div class="table">
-                <input type="text" placeholder="Откуда" class="input_table one" id="departureCity">
-                <input type="text" placeholder="Куда" class="input_table" id="arrivalCity">
-                <input type="date" class="input_table date" id="date">
+                <input type="text" placeholder="Откуда" class="input_table one" id="inputSearch">
+                <input type="text" placeholder="Куда" class="input_table" id="inputSearch">
+                <input type="date" class="input_table date" id="inputSearch">
                 <input type="number" placeholder="1" class="input_table" id="inputSearch">
-                <button class="input_table_link" type="submit" >Поиск</button>
+                <button class="input_table_link" type="submit" onclick="openSearchPage()">Поиск</button>
             </div>
             </form>
             
