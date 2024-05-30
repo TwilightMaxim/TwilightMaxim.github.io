@@ -24,7 +24,7 @@
     </header>
     <section class="page">
         <div class="namePage"><h1>Транспортный парк компании</h1></div>
-        <button class="add_car">Добавить транспорт</button>
+        <button class="add_car" onclick="window.location.href='../html/addtransport.html'">Добавить транспорт</button>
         <div class="park">
             <div class="block_item_park">
                 
@@ -42,7 +42,7 @@
     </footer>
 
     <script>
-        fetch('https://localhost:7150/Vehicles/VehicleList', {
+        fetch('http://85.193.85.147:5000/Vehicles/VehicleList', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -74,7 +74,7 @@
                         <div class="info_car_bottom">
                             <p>Вместимость: ${cars.Capacity}</p>
                             <div class="info_car_bottom_info">
-                                <img src="../img/image 16.png" alt="">
+                                <img class="edit-icon" src="../img/image 16.png" alt="" data-id="${cars.VehicleID}">
                                 <img class="delete-icon" src="../img/image 17.png" alt="" data-id="${cars.VehicleID}"> 
                             </div>       
                         </div>
@@ -85,14 +85,22 @@
 
                 cardContainer.appendChild(card);
 
+                const editIcons = document.querySelectorAll('.edit-icon');
+                    editIcons.forEach(icon => {
+                        icon.addEventListener('click', function(event) {
+                            const id = event.target.dataset.id;
+                            window.location.href = `../html/edittransport.html?id=${id}`;
+                    });
+                });
+                
                 const deleteIcons = document.querySelectorAll('.delete-icon');
                 deleteIcons.forEach(icon => {
-                icon.addEventListener('click', function(event) {
-                    const id = event.target.dataset.id;
-                    console.log(id);
-                    deleteVehicle(id);
+                    icon.addEventListener('click', function(event) {
+                        const id = event.target.dataset.id;
+                        console.log(id);
+                        deleteVehicle(id);
+                    });
                 });
-            });
             });
             })
             .catch(error => {
@@ -100,7 +108,7 @@
             });
 
         function deleteVehicle(id) {
-            fetch(`https://localhost:7150/Vehicles/DeleteVehicle?id=${id}`, {
+            fetch(`http://85.193.85.147:5000/Vehicles/DeleteVehicle?id=${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

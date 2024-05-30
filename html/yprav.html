@@ -24,8 +24,8 @@
     </header>
     <section class="page">
         <div class="namePage"><h1>Транспортные маршруты компании</h1></div>
-        <button class="add_car">Добавить маршрут</button>
-        <table>
+        <button class="add_car" onclick="window.location.href='../html/addmarshrut.html'">Добавить маршрут</button>
+        <table class="routes">
             <tr>
                 <td>№</td>
                 <td>Дата</td>
@@ -38,97 +38,7 @@
                 <td>Цена</td>
                <td></td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="img_td"><img src="../img/image 16.png" alt=""></td>
-                <td class="img_td"><img src="../img/image 17.png" alt=""></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="img_td"><img src="../img/image 16.png" alt=""></td>
-                <td class="img_td"><img src="../img/image 17.png" alt=""></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="img_td"><img src="../img/image 16.png" alt=""></td>
-                <td class="img_td"><img src="../img/image 17.png" alt=""></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="img_td"><img src="../img/image 16.png" alt=""></td>
-                <td class="img_td"><img src="../img/image 17.png" alt=""></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="img_td"><img src="../img/image 16.png" alt=""></td>
-                <td class="img_td"><img src="../img/image 17.png" alt=""></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="img_td"><img src="../img/image 16.png" alt=""></td>
-                <td class="img_td"><img src="../img/image 17.png" alt=""></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td class="img_td"><img src="../img/image 16.png" alt=""></td>
-                <td class="img_td"><img src="../img/image 17.png" alt=""></td>
-            </tr>
+            
         </table>
     </section>
     <footer>
@@ -138,5 +48,90 @@
             <p class="footer_text">SityMove, 2024 ©</p>
         </div>
     </footer>
+
+    <script>
+        fetch('http://85.193.85.147:5000/TransportRoutes/RoutesList', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка сети');
+                }
+                return response.json();
+            })
+            .then(data => {
+                const cardContainer = document.querySelector('.routes');
+                
+
+                data.forEach(rout => {
+                    const row = document.createElement('tr');
+                    row.dataset.id = rout.Id;
+                // Создать содержимое карточки на основе данных предложения
+                const content = `
+                        <td>${rout.Id}</td>
+                        <td>${rout.Date}</td>
+                        <td>${rout.ArrivalTime}</td>
+                        <td>${rout.DepartureTime}</td>
+                        <td>${rout.PlaceArrival}</td>
+                        <td>${rout.PlaceDeparture}</td>
+                        <td>${rout.CityArrival}</td>
+                        <td>${rout.CityDeparture}</td>
+                        <td>${rout.Cost}</td>
+                        <td class="img_td"><img class="edit-icon" src="../img/image 16.png" alt="" data-id="${rout.Id}"></td>
+                        <td class="img_td1"><img class="delete-icon" src="../img/image 17.png" alt="" data-id="${rout.Id}"></td>
+                `;
+                row.innerHTML = content;
+                cardContainer.appendChild(row);
+
+                const editIcons = document.querySelectorAll('.img_td');
+                    editIcons.forEach(icon => {
+                        icon.addEventListener('click', function(event) {
+                            const id = event.target.dataset.id;
+                            window.location.href = `../html/editmarshrut.html?id=${id}`;
+                    });
+                });
+
+                const deleteIcons = document.querySelectorAll('.img_td1');
+                deleteIcons.forEach(icon => {
+                icon.addEventListener('click', function(event) {
+                    const id = event.target.dataset.id;
+                    console.log(id);
+                    deleteRoute(id);
+                });
+            });
+            });
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+
+            function deleteRoute(id) {
+            fetch(`http://85.193.85.147:5000/TransportRoutes/DeleteRoutes?Id=${id}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Ошибка удаления');
+                }
+                location.reload();
+            })
+            .then(data => {
+                console.log('Маршрут успешно удален', data);
+                
+                // Удалить элемент из DOM
+                
+            })
+            .catch(error => {
+                console.error('Ошибка:', error);
+            });
+        }
+    </script>
+
 </body>
 </html>

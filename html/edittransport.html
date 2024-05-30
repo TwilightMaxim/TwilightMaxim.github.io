@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SityMove</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <a href="../index.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
+            </div>
+            <div class="nav">
+                <div class="contact">
+                    <p class="info">+7-962-663-45-41</p>
+                    <p class="info">citymovesupport@gmail.ru</p>
+                </div>
+                <button class="profile_img"></button>
+            </div>
+        </div>
+    </header>
+    <h1 class="text12">Редактирование информации</h1>
+    <div class="container1">
+    <form id="editForm" action="/submit" method="post">
+        <div class="form-group">
+            <label for="Photo">Фото:</label>
+            <input class="textarea" type="text" id="Photo" name="photo" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Model">Модель:</label>
+            <input class="textarea" type="text" id="Model" name="model" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="RegistrationNumber">Регистрационный номер:</label>
+            <input class="textarea" type="text" id="RegistrationNumber" name="number" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Capacity">Вместимость:</label>
+            <input class="textarea" type="text" id="Capacity" name="capacity" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+    </div>
+    
+
+    <footer>
+        <div class="footer">
+            <img class="footer_img" src="../img/image 14.png" alt="">
+            <img class="footer_img" src="../img/image 15.png" alt="">
+            <p class="footer_text">SityMove, 2024 ©</p>
+        </div>
+    </footer>
+
+    <script>
+        // Функция для получения параметра из URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+        
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const carId = getQueryParam('id');
+            console.log(carId)
+            if (carId) {
+                fetch(`http://85.193.85.147:5000/Vehicles/VehicleInfoID?ID=${carId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(car => {
+                    document.getElementById('Photo').value = car.Photo;
+                    document.getElementById('Model').value = car.Model;
+                    document.getElementById('RegistrationNumber').value = car.RegistrationNumber;
+                    document.getElementById('Capacity').value = car.Capacity;
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки данных автомобиля:', error);
+                });
+            }
+
+            document.getElementById('editForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const photo = document.getElementById('Photo').value;
+                const model = document.getElementById('Model').value;
+                const number = document.getElementById('RegistrationNumber').value;
+                const capacity = document.getElementById('Capacity').value;
+
+                fetch(`http://85.193.85.147:5000/Vehicles/EditVehicle?ID=${carId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        Photo: photo,
+                        Model: model,
+                        RegistrationNumber: number,
+                        Capacity: parseInt(capacity)
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Информация успешно обновлена');
+                        window.location.href = '../html/park.html'
+                    } else {
+                        alert('Ошибка при обновлении информации');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    alert('Ошибка при обновлении информации');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

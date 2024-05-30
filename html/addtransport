@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SityMove</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <a href="../index.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
+            </div>
+            <div class="nav">
+                <div class="contact">
+                    <p class="info">+7-962-663-45-41</p>
+                    <p class="info">citymovesupport@gmail.ru</p>
+                </div>
+                <button class="profile_img"></button>
+            </div>
+        </div>
+    </header>
+    <h1 class="text12">Добавление трансорта</h1>
+    <div class="container1">
+    <form id="addForm" action="/submit" method="post">
+        <div class="form-group">
+            <label for="Photo">Фото:</label>
+            <input class="textarea" type="text" id="Photo" name="photo" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Model">Модель:</label>
+            <input class="textarea" type="text" id="Model" name="model" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="RegistrationNumber">Регистрационный номер:</label>
+            <input class="textarea" type="text" id="RegistrationNumber" name="number" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="Capacity">Вместимость:</label>
+            <input class="textarea" type="text" id="Capacity" name="capacity" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+    </div>
+    
+
+    <footer>
+        <div class="footer">
+            <img class="footer_img" src="../img/image 14.png" alt="">
+            <img class="footer_img" src="../img/image 15.png" alt="">
+            <p class="footer_text">SityMove, 2024 ©</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('addForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const photo = document.getElementById('Photo').value;
+                const model = document.getElementById('Model').value;
+                const number = document.getElementById('RegistrationNumber').value;
+                const capacity = document.getElementById('Capacity').value;
+
+                fetch(`https://localhost:7150/Vehicles/VehicleAdd`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        Photo: photo,
+                        Model: model,
+                        RegistrationNumber: number,
+                        Capacity: parseInt(capacity)
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Трансопрт успешно добавлен');
+                        window.location.href = '../html/park.html'
+                    } else {
+                        alert('Ошибка при добавлении трансопрта');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    alert('Ошибка при обновлении информации');
+                });
+            });
+    </script>
+</body>
+</html>

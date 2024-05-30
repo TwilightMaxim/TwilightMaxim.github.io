@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SityMove</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header">
+            <div class="logo">
+                <a href="../index.html"><h1 class="logo_h1">Sity<span class="logo_span">Move</span></h1></a>
+            </div>
+            <div class="nav">
+                <div class="contact">
+                    <p class="info">+7-962-663-45-41</p>
+                    <p class="info">citymovesupport@gmail.ru</p>
+                </div>
+                <button class="profile_img"></button>
+            </div>
+        </div>
+    </header>
+    <h1 class="text12">Редактирование информации</h1>
+    <div class="container1">
+    <form id="editForm" action="/submit" method="post">
+        <div class="form-group">
+            <label for="date">Дата:</label>
+            <input class="textarea" type="date" id="date" name="Date" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="arrivalTime">Время прибытия::</label>
+            <input class="textarea" type="text" id="arrivalTime" name="ArrivalTime" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="departureTime">Время убытия:</label>
+            <input class="textarea" type="text" id="departureTime" name="DepartureTime" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="placeArrival">Место прибытия:</label>
+            <input class="textarea" type="text" id="placeArrival" name="PlaceArrival" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="placeDeparture">Место убытия:</label>
+            <input class="textarea" type="text" id="placeDeparture" name="PlaceDeparture" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cityArrival">Город прибытия:</label>
+            <input class="textarea" type="text" id="cityArrival" name="СityArrival" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cityDeparture">Город убытия:</label>
+            <input class="textarea" type="text" id="cityDeparture" name="CityDeparture" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="cost">Цена:</label>
+            <input class="textarea" type="text" id="cost" name="Cost" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="numberSeats">Кол-во мест:</label>
+            <input class="textarea" type="text" id="numberSeats" name="NumberSeats" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label for="vehicleId">ID транспорта:</label>
+            <input class="textarea" type="text" id="vehicleId" name="VehicleId" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
+    </div>
+    
+
+    <footer>
+        <div class="footer">
+            <img class="footer_img" src="../img/image 14.png" alt="">
+            <img class="footer_img" src="../img/image 15.png" alt="">
+            <p class="footer_text">SityMove, 2024 ©</p>
+        </div>
+    </footer>
+
+    <script>
+        // Функция для получения параметра из URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+        
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const routeId = getQueryParam('id');
+            if (routeId) {
+                fetch(`http://85.193.85.147:5000/TransportRoutes/RoutesInfoID?Id=${routeId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(route => {
+                    document.getElementById('date').value = route.Date;
+                    document.getElementById('arrivalTime').value = route.ArrivalTime;
+                    document.getElementById('departureTime').value = route.DepartureTime;
+                    document.getElementById('placeArrival').value = route.PlaceArrival;
+                    document.getElementById('placeDeparture').value = route.PlaceDeparture;
+                    document.getElementById('cityArrival').value = route.CityArrival;
+                    document.getElementById('cityDeparture').value = route.CityDeparture;
+                    document.getElementById('cost').value = route.Cost;
+                    document.getElementById('numberSeats').value = route.NumberSeats;
+                    document.getElementById('vehicleId').value = route.VehicleId;
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки данных автомобиля:', error);
+                });
+            }
+
+            document.getElementById('editForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const date = document.getElementById('date').value;
+                const arrivalt = document.getElementById('arrivalTime').value;
+                const departuret = document.getElementById('departureTime').value;
+                const placea = document.getElementById('placeArrival').value;
+                const placed = document.getElementById('placeDeparture').value;
+                const citya = document.getElementById('cityArrival').value;
+                const cityd = document.getElementById('cityDeparture').value;
+                const cost = document.getElementById('cost').value;
+                const numbers = document.getElementById('numberSeats').value;
+                const vid = document.getElementById('vehicleId').value;
+
+                fetch(`http://85.193.85.147:5000/TransportRoutes/EditRoutes?Id=${routeId}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        Date: date,
+                        ArrivalTime: arrivalt,
+                        DepartureTime: departuret,
+                        PlaceArrival: placea,
+                        PlaceDeparture: placed,
+                        CityArrival: citya,
+                        CityDeparture: cityd,
+                        Cost: cost,
+                        NumberSeats: numbers,
+                        VehicleId: vid
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Информация успешно обновлена');
+                        window.location.href = '../html/yprav.html'
+                    } else {
+                        alert('Ошибка при обновлении информации');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    alert('Ошибка при обновлении информации');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
