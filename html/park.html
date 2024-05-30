@@ -42,7 +42,7 @@
     </footer>
 
     <script>
-        fetch('https://85.193.85.147:5000/Vehicles/VehicleList', {
+        fetch('http://85.193.85.147:5000/Vehicles/VehicleList', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -108,7 +108,7 @@
             });
 
         function deleteVehicle(id) {
-            fetch(`https://85.193.85.147:5000/Vehicles/DeleteVehicle?id=${id}`, {
+            fetch(`http://85.193.85.147:5000/Vehicles/DeleteVehicle?id=${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

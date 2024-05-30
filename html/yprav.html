@@ -50,7 +50,7 @@
     </footer>
 
     <script>
-        fetch('https://85.193.85.147:5000/TransportRoutes/RoutesList', {
+        fetch('http://85.193.85.147:5000/TransportRoutes/RoutesList', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -109,7 +109,7 @@
             });
 
             function deleteRoute(id) {
-            fetch(`https://85.193.85.147:5000/TransportRoutes/DeleteRoutes?Id=${id}`, {
+            fetch(`http://85.193.85.147:5000/TransportRoutes/DeleteRoutes?Id=${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

@@ -69,7 +69,7 @@
             const carId = getQueryParam('id');
             console.log(carId)
             if (carId) {
-                fetch(`https://85.193.85.147:5000/Vehicles/VehicleInfoID?ID=${carId}`, {
+                fetch(`http://85.193.85.147:5000/Vehicles/VehicleInfoID?ID=${carId}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -95,7 +95,7 @@
                 const number = document.getElementById('RegistrationNumber').value;
                 const capacity = document.getElementById('Capacity').value;
 
-                fetch(`https://85.193.85.147:5000/Vehicles/EditVehicle?ID=${carId}`, {
+                fetch(`http://85.193.85.147:5000/Vehicles/EditVehicle?ID=${carId}`, {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
